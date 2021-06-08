@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">chauffeursApp</string>
+    <string name="toTimerScreen">Naar timer gaan</string>
 </resources>
