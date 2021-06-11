@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -47,14 +48,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(String email, String pass){
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-        String url = "http://127.0.0.1:8000/api/login";
+        String url = " http://c19a9012ec20.ngrok.io/api/login";
 
         StringRequest postRequest = new StringRequest(Request.Method.POST,url,
             new Response.Listener<String>(){
                 @Override
                 public void onResponse(String response){
                     Log.d("APPLOG", response.toString());
-                    Toast.makeText(MainActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Logged in " + response, Toast.LENGTH_SHORT).show();
                 }
             },
                 new Response.ErrorListener(){
@@ -66,14 +67,14 @@ public class MainActivity extends AppCompatActivity {
                 }
         ){
             @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String,String>();
-                params.put("post_email", email);
-                params.put("post_passwd", pass);
+            public Map<String,String> getParams() throws AuthFailureError{
+                Map<String,String> params = new HashMap<>();
+                params.put("email", email);
+                params.put("password", pass);
                 return params;
             }
         };
         queue.add(postRequest);
     }
-
 }
+
