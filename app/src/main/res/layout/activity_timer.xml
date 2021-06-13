@@ -6,41 +6,26 @@
     android:orientation="vertical"
     tools:ignore="MissingClass">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="resetTapped"
-            android:text="Reset"
-            android:textColor="@color/red"
-            android:textSize="30sp" />
-
-    <Button
-        android:id="@+id/startStopButton"
+    <Chronometer
+        android:id="@+id/chronometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:background="@color/grey"
-        android:text="Start"
-        android:textColor="@color/green"
         android:textSize="30sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="startStopTapped"
-            android:text="TIMER"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
-
-
-    <TextView
-        android:id="@+id/timerText"
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="00:00:00"
-        android:textColor="@color/black"
-        android:textSize="60sp" />
+        android:onClick="startChronometer"
+        android:text="Start" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="pauseChronometer"
+        android:text="Pause" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="resetChronometer"
+        android:text="Reset" />
 </LinearLayout>
