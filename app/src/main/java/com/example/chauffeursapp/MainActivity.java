@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //inloggen
     public void login(String email, String pass){
         RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
-        String url = "http://c31ef71d4b9f.ngrok.io/api/login";
+        String url = "https://iiatimd-laravel-5ahcg.ondigitalocean.app/api/login";
 
         StringRequest postRequest = new StringRequest(Request.Method.POST,url,
             new Response.Listener<String>(){
