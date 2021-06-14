@@ -46,9 +46,11 @@ public class MainActivity extends AppCompatActivity {
         
     }
 
+
+    //inloggen
     public void login(String email, String pass){
-        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-        String url = " http://c19a9012ec20.ngrok.io/api/login";
+        RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
+        String url = "http://0961446887cc.ngrok.io/api/login";
 
         StringRequest postRequest = new StringRequest(Request.Method.POST,url,
             new Response.Listener<String>(){
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 return params;
             }
         };
-        queue.add(postRequest);
+        VolleySingleton.getInstance(this).addToRequestQueue(postRequest);
     }
 }
 
