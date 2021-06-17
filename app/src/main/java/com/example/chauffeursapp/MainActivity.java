@@ -88,6 +88,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(toTimerScreenIntent);
     }
 
+    public void todashboardAdmin(){
+        Intent toAdminDashboard = new Intent(this, DashboardAdminActivity.class);
+        startActivity(toAdminDashboard);
+    }
+
 
 }
 

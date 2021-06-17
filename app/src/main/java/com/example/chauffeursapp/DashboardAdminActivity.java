@@ -11,21 +11,32 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DashboardAdminActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button werknemerToevoegBtn;
+    Button geschiedenisBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_dashboardadmin);
 
         werknemerToevoegBtn = (Button) findViewById(R.id.AddBtn);
+        geschiedenisBtn = (Button) findViewById(R.id.historyBtn);
 
         werknemerToevoegBtn.setOnClickListener(this);
+        geschiedenisBtn.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        //Werknemer toevoegen
-        Toast.makeText(DashboardAdminActivity.this, "Toevoegen", Toast.LENGTH_SHORT).show();
+
+        if (v == werknemerToevoegBtn){
+            //Werknemer toevoegen
+            Toast.makeText(DashboardAdminActivity.this, "Toevoegen", Toast.LENGTH_SHORT).show();
+        }
+
+        else if (v == geschiedenisBtn){
+            // Geschiedenis werknemers bekijken
+            Toast.makeText(DashboardAdminActivity.this, "Geschiedenis werknemers", Toast.LENGTH_SHORT).show();
+        }
     }
 }
