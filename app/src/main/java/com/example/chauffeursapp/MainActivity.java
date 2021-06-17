@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onResponse(String response){
                     anderScherm();
-                    Toast.makeText(MainActivity.this, "Ingelogd", Toast.LENGTH_SHORT).show();
+                    getDataVanUser();
+                    Toast.makeText(MainActivity.this, "U bent ingelogd!" + response, Toast.LENGTH_SHORT).show();
                 }
             },
                 new Response.ErrorListener(){
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
         VolleySingleton.getInstance(this).addToRequestQueue(postRequest);
+
     }
 
     public void anderScherm(){
@@ -87,5 +89,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent toTimerScreenIntent = new Intent(this, ActivityTimer.class);
         startActivity(toTimerScreenIntent);
     }
+
+    public void getDataVanUser() {
+        RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
+        String url = "https://iiatimd-laravel-5ahcg.ondigitalocean.app/api/user";
+
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("response", response);
+                        Toast.makeText(MainActivity.this, "Data is ingeladen!", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("APPLOG", error.toString());
+                        Toast.makeText(MainActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        VolleySingleton.getInstance(this).addToRequestQueue(getRequest);
+
+    }
+
+
 }
 
