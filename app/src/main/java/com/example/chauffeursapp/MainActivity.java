@@ -87,5 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent toTimerScreenIntent = new Intent(this, ActivityTimer.class);
         startActivity(toTimerScreenIntent);
     }
+
+
 }
 

@@ -73,8 +73,8 @@
 
     <TextView
         android:id="@+id/titelText"
-        android:layout_width="230dp"
-        android:layout_height="55dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Chauffeursapp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#31393C"
