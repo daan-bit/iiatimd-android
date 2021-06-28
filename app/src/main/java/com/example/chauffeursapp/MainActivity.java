@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             new Response.Listener<String>(){
                 @Override
                 public void onResponse(String response){
-                    anderScherm();
                     Toast.makeText(MainActivity.this, "Ingelogd", Toast.LENGTH_SHORT).show();
                 }
             },
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onErrorResponse(VolleyError error){
                         Log.d("APPLOG", error.toString());
-                        Toast.makeText(MainActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Inloggen mislukt", Toast.LENGTH_SHORT).show();
                     }
                 }
         ){
@@ -79,7 +78,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         VolleySingleton.getInstance(this).addToRequestQueue(postRequest);
     }
 
-    public void anderScherm(){
+
+    //Pagina's
+    public void toTimerScreen(){
         Bundle bundleForTimerScreen = new Bundle();
         String name = "Alex";
         Log.d("to timer", "went to timer");
@@ -88,8 +89,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(toTimerScreenIntent);
     }
 
-    public void todashboardAdmin(){
+    public void toDashboardAdmin(){
+        Bundle bundleForDashboardScreen = new Bundle();
+        String name = "Daniël";
+        bundleForDashboardScreen.putString("name", name);
+        Log.d("onClickTest", "Hallo ik ben geklikt");
         Intent toAdminDashboard = new Intent(this, DashboardAdminActivity.class);
+        toAdminDashboard.putExtras(bundleForDashboardScreen);
         startActivity(toAdminDashboard);
     }
 
