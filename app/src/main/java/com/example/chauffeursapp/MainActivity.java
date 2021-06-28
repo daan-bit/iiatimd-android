@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             new Response.Listener<String>(){
                 @Override
                 public void onResponse(String response){
+                    toDashboardAdmin();
                     Toast.makeText(MainActivity.this, "Ingelogd", Toast.LENGTH_SHORT).show();
                 }
             },

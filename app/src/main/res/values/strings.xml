@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">chauffeursApp</string>
     <string name="toTimerScreen">Naar timer gaan</string>
+    <string name="email">E-mail</string>
+    <string name="password">Wachtwoord</string>
+    <string name="password2">Wachtwoord nogmaals</string>
+    <string name="name">Naam</string>
+    <string name="aanmaken">Account aanmaken</string>
 </resources>
