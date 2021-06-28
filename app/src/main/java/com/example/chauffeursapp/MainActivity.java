@@ -77,9 +77,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Log.d("inloggenToken", saveRol);
                             edit.commit();
 
-                            if(response.getString("rol").equals("werknemer")) {
+                            //hier verkrijgen we de rol van de gebruiker
+                            getRol();
+                            //rol is werknemer?
+                            if(getRol().equals("werknemer")) {
+                                //hier zetten we de dashboard van werknemer
                                 anderScherm();
                             } else {
+                                //hier gebruiken we de dashboard van de user
+                                //anders tonen we ander dashboard scherm
                                 Log.d("rol", "geen werknemer");
                             }
                         } catch (JSONException e) {
@@ -93,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("APPLOG", error.toString());
-                        Toast.makeText(MainActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Vekeerde e-mail of wachtwoord. Probeer opnieuw", Toast.LENGTH_SHORT).show();
                     }
                 }
         ) {
@@ -115,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences prefs = this.getSharedPreferences("userSettings", Context.MODE_PRIVATE);
         String token = prefs.getString("token", "");
         return token;
+
     }
 
     //rol verkrijgen
@@ -126,10 +133,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void anderScherm() {
+        getToken();
         Bundle bundleForTimerScreen = new Bundle();
         String name = "Alex";
+        String token = getToken();
         Log.d("to timer", "went to timer");
         bundleForTimerScreen.putString("name", name);
+        bundleForTimerScreen.putString("token", token);
         Intent toTimerScreenIntent = new Intent(this, ActivityTimer.class);
         startActivity(toTimerScreenIntent);
     }
