@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,9 +18,9 @@ public class DashboardAdminActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboardadmin);
-
-        werknemerToevoegBtn = (Button) findViewById(R.id.AddBtn);
-        geschiedenisBtn = (Button) findViewById(R.id.historyBtn);
+        APICalls.getAllUsers();
+        werknemerToevoegBtn = (Button) findViewById(R.id.shiftStartBtn);
+        geschiedenisBtn = (Button) findViewById(R.id.driveHistoryBtn);
 
         werknemerToevoegBtn.setOnClickListener(this);
         geschiedenisBtn.setOnClickListener(this);
