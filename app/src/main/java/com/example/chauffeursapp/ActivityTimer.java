@@ -56,4 +56,15 @@ public class ActivityTimer extends AppCompatActivity {
         chronometer.setBase(SystemClock.elapsedRealtime());
         pauseOffset = 0;
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (running) {
+            chronometer.stop();
+            pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+            running = false;
+        }
+
+    }
 }

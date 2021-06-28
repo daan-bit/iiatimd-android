@@ -71,19 +71,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         try {
                             String saveToken = response.getString("token");
                             String saveRol = response.getString("rol");
+                            String user_name = response.getString("naam");
+                            int user_id = response.getInt("user_id");
+                            String email = response.getString("email");
+
                             edit.putString("token", saveToken);
                             edit.putString("rol", saveRol);
+                            edit.putString("user_name", user_name);
+                            edit.putInt("user_id", user_id);
+                            edit.putString("email", email);
+
                             Log.d("inloggentoken", saveToken);
                             Log.d("inloggenToken", saveRol);
+                            Log.d("inloggennnaam", user_name);
                             edit.commit();
 
                             //hier verkrijgen we de rol van de gebruiker
                             getRol();
                             //rol is werknemer?
                             if(getRol().equals("werknemer")) {
+                                getUserName();
                                 //hier zetten we de dashboard van werknemer
-                                Toast.makeText(MainActivity.this, "Werknemer", Toast.LENGTH_SHORT).show();
-                                toTimerScreen();
+                                Toast.makeText(MainActivity.this, getUserName(), Toast.LENGTH_SHORT).show();
+                                toDashboardUser();
                             } else {
                                 //hier gebruiken we de dashboard van de user
                                 //anders tonen we ander dashboard scherm
@@ -124,6 +134,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return token;
 
     }
+    //naam verkrijgen
+    private String getUserName() {
+        SharedPreferences prefs = this.getSharedPreferences("userSettings", Context.MODE_PRIVATE);
+        String userName = prefs.getString("user_name", "");
+        return userName;
+
+    }
+
+    private int getUserId() {
+        SharedPreferences prefs = this.getSharedPreferences("userSettings", Context.MODE_PRIVATE);
+        int userId = prefs.getInt("user_id", 0);
+        return userId;
+    }
 
     //rol verkrijgen
     private String getRol() {
@@ -135,14 +158,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void toTimerScreen() {
         getToken();
+        getUserName();
         Bundle bundleForTimerScreen = new Bundle();
-        String name = "Alex";
+        String name = getUserName();
         String token = getToken();
+        int userId = getUserId();
         Log.d("to timer", "went to timer");
         bundleForTimerScreen.putString("name", name);
         bundleForTimerScreen.putString("token", token);
+        bundleForTimerScreen.putInt("user_id", userId);
         Intent toTimerScreenIntent = new Intent(this, ActivityTimer.class);
         startActivity(toTimerScreenIntent);
+    }
+
+    public void toDashboardUser() {
+        getToken();
+        getUserName();
+        Bundle bundleForUserDashboard = new Bundle();
+        String name = getUserName();
+        String token = getToken();
+        Log.d("gebruikernaam", name);
+        Log.d("to timer", "went to timer");
+        bundleForUserDashboard.putString("name", name);
+        bundleForUserDashboard.putString("token", token);
+        Intent toUserDashboard = new Intent(this, DashboardUserActivity.class);
+        toUserDashboard.putExtras(bundleForUserDashboard);
+        startActivity(toUserDashboard);
     }
 
     public void toDashboardAdmin(){

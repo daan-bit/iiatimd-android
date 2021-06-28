@@ -12,4 +12,9 @@ public class APICalls {
     public static final String LOGIN = HOME+"login";
     //nog meer urls toevoegen
 
+    public static void getAllUsers() {
+
+    }
+
+
 }
