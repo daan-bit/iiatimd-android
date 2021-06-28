@@ -1,5 +1,6 @@
 package com.example.chauffeursapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class WerknemerToevoegenActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -42,42 +44,15 @@ public class WerknemerToevoegenActivity extends AppCompatActivity implements Vie
     @Override
     public void onClick(View v) {
         if (addPass.getText().toString().equals(addPass2.getText().toString())) {
-            accountAanmaken(addEmail.getText().toString(), addPass.getText().toString(), addName.getText().toString());
+            APICalls.accountAanmaken(addEmail.getText().toString(), addPass.getText().toString(), addName.getText().toString(), this.getApplicationContext());
+            Intent toAdminDashboard = new Intent(this, DashboardAdminActivity.class);
+            startActivity(toAdminDashboard);
         }else {
             Toast.makeText(WerknemerToevoegenActivity.this, "Wachtwoorden ongelijk", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void accountAanmaken(String addEmail, String addPass, String addName){
-            RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
-            String url = "https://iiatimd-laravel-5ahcg.ondigitalocean.app/api/register";
 
-            StringRequest postRequest = new StringRequest(Request.Method.POST,url,
-                    new Response.Listener<String>(){
-                        @Override
-                        public void onResponse(String response){
-                            Toast.makeText(WerknemerToevoegenActivity.this, "Aangemaakt", Toast.LENGTH_SHORT).show();
-                        }
-                    },
-                    new Response.ErrorListener(){
-                        @Override
-                        public void onErrorResponse(VolleyError error){
-                            Log.d("APPLOG", error.toString());
-                            Toast.makeText(WerknemerToevoegenActivity.this, "Niet aangemaakt", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-            ){
-                @Override
-                public Map<String,String> getParams() throws AuthFailureError {
-                    Map<String,String> params = new HashMap<>();
-                    params.put("name", addName);
-                    params.put("email", addEmail);
-                    params.put("password", addPass);
-                    params.put("rol", "werknemer");
-                    return params;
-                }
-            };
-            VolleySingleton.getInstance(this).addToRequestQueue(postRequest);
-        }
-    }
+
+}
 

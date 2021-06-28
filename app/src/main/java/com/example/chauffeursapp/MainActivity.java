@@ -1,6 +1,7 @@
 package com.example.chauffeursapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Context;
 import android.content.Intent;
@@ -40,6 +41,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loginBtn = (Button) findViewById(R.id.loginBtn);
 
         loginBtn.setOnClickListener(this);
+
+        //Dit later veranderen, nu voor database
+        User[] users = new User[5];
+        users[0] = new User("Jan", "Jan@gmail.com", 5, 1);
+        users[1] = new User("Cees", "Jan@gmail.com", 5, 1);
+
+        //Database aanmaken
+        AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
+
+        //new Thread(new InsertUserTask(db, users[0])).start();
+        //new Thread(new GetUserTask(db)).start();
+
 
     }
 
@@ -187,12 +200,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void toDashboardAdmin(){
-        Bundle bundleForDashboardScreen = new Bundle();
-        String name = "Daniël";
-        bundleForDashboardScreen.putString("name", name);
-        Log.d("onClickTest", "Hallo ik ben geklikt");
         Intent toAdminDashboard = new Intent(this, DashboardAdminActivity.class);
-        toAdminDashboard.putExtras(bundleForDashboardScreen);
         startActivity(toAdminDashboard);
     }
 
