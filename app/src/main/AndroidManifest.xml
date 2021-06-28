@@ -22,7 +22,7 @@
 
         <activity android:name="ActivityTimer" />
         <activity android:name="DashboardAdminActivity" />
-
+        <activity android:name="WerknemerToevoegenActivity" />
     </application>
 
 </manifest>
