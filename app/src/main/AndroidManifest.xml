@@ -23,6 +23,7 @@
         <activity android:name="DashboardAdminActivity" />
         <activity android:name="WerknemerToevoegenActivity" />
         <activity android:name="DashboardUserActivity" />
+        <activity android:name="GeschiedenisAdminActivity" />
 
     </application>
 
