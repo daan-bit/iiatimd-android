@@ -59,8 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Thread(new InsertUserTask(db, users[1])).start();
         //new Thread(new GetUserTask(db)).start();
 
-
-        //
     }
 
 
