@@ -24,12 +24,12 @@ public class GeschiedenisAdminActivity extends AppCompatActivity {
         recyclerView.hasFixedSize();
 
         final User[] users = new User[6];
-        users[0] = new User("Marina", "Joejoe@gmail.com", 1, 1);
-        users[1] = new User("Youri", "Joejoe@gmail.com", 1, 2);
-        users[2] = new User("Pieter", "Joejoe@gmail.com", 1, 3);
-        users[3] = new User("Zwanus", "Joejoe@gmail.com", 1, 4);
-        users[4] = new User("Nemo", "Joejoe@gmail.com", 1, 5);
-        users[5] = new User("Leo", "Joejoe@gmail.com", 1, 6);
+        users[0] = new User("Marina", "Joejoe@gmail.com", "werknemer", 1);
+        users[1] = new User("Youri", "Joejoe@gmail.com", "werknemer", 2);
+        users[2] = new User("Pieter", "Joejoe@gmail.com", "werknemer", 3);
+        users[3] = new User("Zwanus", "Joejoe@gmail.com", "werknemer", 4);
+        users[4] = new User("Nemo", "Joejoe@gmail.com", "werknemer", 5);
+        users[5] = new User("Leo", "Joejoe@gmail.com", "werknemer", 6);
 
         recyclerViewAdapter = new UserAdapter(users);
         recyclerView.setAdapter(recyclerViewAdapter);

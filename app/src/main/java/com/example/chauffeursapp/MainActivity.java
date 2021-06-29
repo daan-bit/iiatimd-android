@@ -46,27 +46,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         loginBtn.setOnClickListener(this);
         AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
-        //apicallGet(Context);
         APICalls.getAllUsers(this.getApplicationContext());
-        //Dit later veranderen, nu voor database
-     //   User[] users = new User[26];
-
-       // users[0] = new User("Jan", "Jan@gmail.com", "werkgever", 1);
-        //users[1] = new User("Cees", "Jan@gmail.com", "werknemer", 2);
-
-        //Database aanmaken
 
         //Thread(new InsertUserTask(db, users[1])).start();
         //new Thread(new GetUserTask(db)).start();
-
     }
-
-
 
     public void onClick(View v) {
         login();
     }
-
 
     //inloggen
     public void login() {
