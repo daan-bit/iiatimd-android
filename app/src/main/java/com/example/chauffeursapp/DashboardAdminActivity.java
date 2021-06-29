@@ -18,7 +18,7 @@ public class DashboardAdminActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboardadmin);
-        APICalls.getAllUsers();
+        //APICalls.getAllUsers(this);
         werknemerToevoegBtn = (Button) findViewById(R.id.shiftStartBtn);
         geschiedenisBtn = (Button) findViewById(R.id.driveHistoryBtn);
 

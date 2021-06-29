@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -43,21 +45,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loginBtn = (Button) findViewById(R.id.loginBtn);
 
         loginBtn.setOnClickListener(this);
-
+        AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
+        //apicallGet(Context);
+        APICalls.getAllUsers(this.getApplicationContext());
         //Dit later veranderen, nu voor database
-        User[] users = new User[5];
-        users[0] = new User("Jan", "Jan@gmail.com", 5, 1);
-        users[1] = new User("Cees", "Jan@gmail.com", 6, 2);
+     //   User[] users = new User[26];
+
+       // users[0] = new User("Jan", "Jan@gmail.com", "werkgever", 1);
+        //users[1] = new User("Cees", "Jan@gmail.com", "werknemer", 2);
 
         //Database aanmaken
-        AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
 
-        new Thread(new InsertUserTask(db, users[1])).start();
+        //Thread(new InsertUserTask(db, users[1])).start();
         //new Thread(new GetUserTask(db)).start();
 
 
         //
     }
+
 
 
     public void onClick(View v) {

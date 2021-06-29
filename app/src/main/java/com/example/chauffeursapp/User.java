@@ -14,30 +14,25 @@ public class User {
     private String email;
 
     @ColumnInfo
-    private int uren;
+    private String rol;
 
     @PrimaryKey
     private int uuid;
 
-    public User (String name, String email, int uren, int uuid){
+    public User (String name, String email, String rol, int uuid){
         this.name = name;
         this.email = email;
-        this.uren = uren;
+        this.rol = rol;
         this.uuid = uuid;
     }
 
     public String getName(){
         return this.name;
     }
-
     public String getEmail(){
         return this.email;
     }
-
-    public int getUren(){
-        return this.uren;
-    }
-
+    public String getRol() { return this.rol; }
     public int getUuid(){
         return  this.uuid;
     }
