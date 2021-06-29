@@ -1,6 +1,7 @@
 package com.example.chauffeursapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Database;
 import androidx.room.Room;
 
 import android.content.Context;
@@ -45,16 +46,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Dit later veranderen, nu voor database
         User[] users = new User[5];
         users[0] = new User("Jan", "Jan@gmail.com", 5, 1);
-        users[1] = new User("Cees", "Jan@gmail.com", 5, 1);
+        users[1] = new User("Cees", "Jan@gmail.com", 6, 2);
 
         //Database aanmaken
         AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
 
-        //new Thread(new InsertUserTask(db, users[0])).start();
+        new Thread(new InsertUserTask(db, users[1])).start();
         //new Thread(new GetUserTask(db)).start();
-
-
     }
+
 
     public void onClick(View v) {
         login();
