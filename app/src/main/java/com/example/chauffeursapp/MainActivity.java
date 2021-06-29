@@ -1,6 +1,7 @@
 package com.example.chauffeursapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.room.Database;
 import androidx.room.Room;
 
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         new Thread(new InsertUserTask(db, users[1])).start();
         //new Thread(new GetUserTask(db)).start();
+
+
+        //
     }
 
 

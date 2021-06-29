@@ -36,8 +36,8 @@ public class DashboardAdminActivity extends AppCompatActivity implements View.On
         }
 
         else if (v == geschiedenisBtn){
-            // Geschiedenis werknemers bekijken
-            Toast.makeText(DashboardAdminActivity.this, "Geschiedenis werknemers", Toast.LENGTH_SHORT).show();
+            Intent toGeschiedenisAdmin = new Intent(this, GeschiedenisAdminActivity.class);
+            startActivity(toGeschiedenisAdmin);
         }
     }
 }
