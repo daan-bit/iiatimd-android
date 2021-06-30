@@ -5,6 +5,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -19,6 +20,9 @@ public interface WerktijdenDAO {
 
     @Delete
     void delete(Werktijden werktijden);
+
+    @Update
+    void update(Werktijden werktijden);
 
 
 }

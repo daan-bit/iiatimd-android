@@ -1,4 +1,5 @@
 package com.example.chauffeursapp;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,13 +29,26 @@ public class ActivityTimer extends AppCompatActivity {
         chronometer = findViewById(R.id.chronometer);
         chronometer.setFormat("Tijd: %s");
         chronometer.setBase(SystemClock.elapsedRealtime());
+        Werktijden[] werktijdens = new Werktijden[1];
+        werktijdens[0] = new Werktijden(1, 1, "2021-06-30 11:55:00", "6", "1", "2021-06-30 19:55:00");
+
+        //Database aanmaken
+        AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
+
+        new Thread(new InsertWerktijdenTask(db, werktijdens[0])).start();
+        try {
+            Thread.sleep(500);
+            Thread.currentThread().interrupt(); // very important
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
-                if ((SystemClock.elapsedRealtime() - chronometer.getBase()) >= 10000) { // voor nu 10 seconden
+               /* if ((SystemClock.elapsedRealtime() - chronometer.getBase()) >= 10000) { // voor nu 10 seconden
                     chronometer.setBase(SystemClock.elapsedRealtime());
                     Toast.makeText(ActivityTimer.this, "U bent klaar met rijden voor vandaag!", Toast.LENGTH_SHORT).show(); // chauffeur klaar met rijden
-                }
+                }*/
             }
         });
     }
