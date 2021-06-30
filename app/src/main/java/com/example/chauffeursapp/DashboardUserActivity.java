@@ -46,7 +46,7 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
         Log.d("to timer", "went to timer");
         bundleForShift.putInt("user_id", user_id);
         Intent toUserDashboard = new Intent(this, ActivityTimer.class);
-        toUserDashboard.putExtras(toUserDashboard);
+        toUserDashboard.putExtras(bundleForShift);
         startActivity(toUserDashboard);
     }
 

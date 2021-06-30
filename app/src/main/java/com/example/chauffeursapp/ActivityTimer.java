@@ -1,6 +1,7 @@
 package com.example.chauffeursapp;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +15,8 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -22,15 +25,20 @@ public class ActivityTimer extends AppCompatActivity {
     private Chronometer chronometer;
     private long pauseOffset;
     private boolean running;
+    int u_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
+
+        Bundle bundle = getIntent().getExtras();
+        u_id = bundle.getInt("user_id");
+
         chronometer = findViewById(R.id.chronometer);
         chronometer.setFormat("Tijd: %s");
         chronometer.setBase(SystemClock.elapsedRealtime());
-        Werktijden[] werktijdens = new Werktijden[1];
-        werktijdens[0] = new Werktijden(1, 1, "2021-06-30 11:55:00", "6", "1", "2021-06-30 19:55:00");
+        Werktijden[] werktijdens = new Werktijden[5];
+        werktijdens[0] = new Werktijden(2, 1, "2021-06-30 11:55:00", "6", "1", "2021-06-30 19:55:00");
 
         //Database aanmaken
         AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
@@ -53,6 +61,19 @@ public class ActivityTimer extends AppCompatActivity {
         });
     }
     public void startChronometer(View v) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        Log.d("datum_nu", formatter.format(date));
+        Werktijden[] werktijdens = new Werktijden[1];
+        werktijdens[0] = new Werktijden(3, u_id, formatter.format((date)), "6", "1", "2021-06-30 19:55:00");
+        AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
+        new Thread(new InsertWerktijdenTask(db, werktijdens[0])).start();
+        try {
+            Thread.sleep(500);
+            Thread.currentThread().interrupt(); // very important
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if (!running) {
             chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
             chronometer.start();

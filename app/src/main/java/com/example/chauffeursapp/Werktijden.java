@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Entity //om hem een model in de db te maken
 public class Werktijden {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ForeignKey(entity = User.class, parentColumns = {"uuid"}, childColumns = {"users"})
