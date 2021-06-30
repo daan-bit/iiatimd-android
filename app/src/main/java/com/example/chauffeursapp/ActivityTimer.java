@@ -31,11 +31,12 @@ public class ActivityTimer extends AppCompatActivity {
     String begin_shift;
     int u_id;
     int laatsteId;
+    private boolean shiftBegonnen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
-
+        shiftBegonnen = false;
         Bundle bundle = getIntent().getExtras();
         u_id = bundle.getInt("user_id");
 
@@ -60,7 +61,7 @@ public class ActivityTimer extends AppCompatActivity {
 
         //deze functie gebruiken we om te bepalen wanneer de gebruiker klaar is met zijn shift
 
-        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+       /* chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
                 if ((SystemClock.elapsedRealtime() - chronometer.getBase()) >= 30000) { // voor nu 30 seconden
@@ -69,37 +70,39 @@ public class ActivityTimer extends AppCompatActivity {
                     chronometer.stop();
                 }
             }
-        });
+        }); */
     }
     public void startChronometer(View v) {
 
         /* We zetten gegevens in de database */
+        if(!shiftBegonnen) {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            Date date = new Date();
+            Log.d("datum_nu", formatter.format(date));
+            begin_shift = formatter.format((date));
+            Werktijden[] werktijdens = new Werktijden[1];
+            werktijdens[0] = new Werktijden(idRandom, u_id, formatter.format((date)), "null");
+            AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
+            new Thread(new InsertWerktijdenTask(db, werktijdens[0])).start();
+            try {
+                Thread.sleep(500);
+                Thread.currentThread().interrupt(); // very important
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        Log.d("datum_nu", formatter.format(date));
-        begin_shift = formatter.format((date));
-        Werktijden[] werktijdens = new Werktijden[1];
-        werktijdens[0] = new Werktijden(idRandom, u_id, formatter.format((date)),"null");
-        AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
-        new Thread(new InsertWerktijdenTask(db, werktijdens[0])).start();
-        try {
-            Thread.sleep(500);
-            Thread.currentThread().interrupt(); // very important
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        /* Einde gegevens zetten in DB bij start */
+            /* Einde gegevens zetten in DB bij start */
 
 
-        /* We halen de ID op van die insert */
+            /* We halen de ID op van die insert */
             new Thread(new GetWerktijdenTask(db)).start();
-        try {
-            Thread.sleep(500);
-            Thread.currentThread().interrupt(); // very important
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            try {
+                Thread.sleep(500);
+                Thread.currentThread().interrupt(); // very important
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            shiftBegonnen = true;
         }
 
         if (!running) {
@@ -125,27 +128,27 @@ public class ActivityTimer extends AppCompatActivity {
     public void onStop() {
         super.onStop();
         if (running) {
-            chronometer.stop();
-            pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
-            running = false;
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date = new Date();
-            String einde_shift = formatter.format((date));
+            if(shiftBegonnen) {
+                chronometer.stop();
+                pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+                running = false;
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                Date date = new Date();
+                String einde_shift = formatter.format((date));
 
-            Werktijden[] werktijdens = new Werktijden[1];
-            werktijdens[0] = new Werktijden(idRandom, u_id, begin_shift, einde_shift);
-            AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
-            new Thread(new UpdateWerktijdenTask(db, werktijdens[0])).start();
-            try {
-                Thread.sleep(500);
-                Thread.currentThread().interrupt(); // very important
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                Werktijden[] werktijdens = new Werktijden[1];
+                werktijdens[0] = new Werktijden(idRandom, u_id, begin_shift, einde_shift);
+                AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
+                new Thread(new UpdateWerktijdenTask(db, werktijdens[0])).start();
+                try {
+                    Thread.sleep(500);
+                    Thread.currentThread().interrupt(); // very important
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                shiftBegonnen = false;
             }
 
-
-
-            Log.d("aantal_uren_gewerkt", einde_shift);
         }
 
     }
