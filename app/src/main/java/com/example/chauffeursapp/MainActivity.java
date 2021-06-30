@@ -164,31 +164,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    public void toTimerScreen() {
-        getToken();
-        getUserName();
-        Bundle bundleForTimerScreen = new Bundle();
-        String name = getUserName();
-        String token = getToken();
-        int userId = getUserId();
-        Log.d("to timer", "went to timer");
-        bundleForTimerScreen.putString("name", name);
-        bundleForTimerScreen.putString("token", token);
-        bundleForTimerScreen.putInt("user_id", userId);
-        Intent toTimerScreenIntent = new Intent(this, ActivityTimer.class);
-        startActivity(toTimerScreenIntent);
-    }
 
     public void toDashboardUser() {
         getToken();
         getUserName();
+        getUserId();
         Bundle bundleForUserDashboard = new Bundle();
         String name = getUserName();
         String token = getToken();
+        int user_id = getUserId();
         Log.d("gebruikernaam", name);
         Log.d("to timer", "went to timer");
         bundleForUserDashboard.putString("name", name);
         bundleForUserDashboard.putString("token", token);
+        bundleForUserDashboard.putInt("user_id", user_id);
         Intent toUserDashboard = new Intent(this, DashboardUserActivity.class);
         toUserDashboard.putExtras(bundleForUserDashboard);
         startActivity(toUserDashboard);
