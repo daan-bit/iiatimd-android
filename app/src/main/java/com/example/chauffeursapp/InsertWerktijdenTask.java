@@ -15,7 +15,7 @@ public class InsertWerktijdenTask implements Runnable{
     @Override
     public void run() {
         db.werktijdenDAO().InsertWerktijden(this.werktijden);
-        String begin_shift = db.werktijdenDAO().getAll().get(0).getBegin_shift();
-        Log.d("insertedWerktijd", begin_shift);
+        int opgeslagenId = db.werktijdenDAO().getAll().get(0).getId();
+
     }
 }

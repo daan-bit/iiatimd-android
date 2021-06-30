@@ -15,11 +15,18 @@ public interface WerktijdenDAO {
     @Query("SELECT * FROM werktijden")
     List<Werktijden> getAll();
 
+    @Query("SELECT * FROM werktijden ORDER BY id DESC")
+    List<Werktijden> getLast();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void InsertWerktijden(Werktijden werktijden);
 
     @Delete
     void delete(Werktijden werktijden);
+
+    //@Query("UPDATE werktijden SET einde_shift = :einde_shift WHERE begin_shift = :begin_shift")
+    //void updateAantalUrenGewerkt(Werktijden werktijden);
+
 
     @Update
     void update(Werktijden werktijden);
