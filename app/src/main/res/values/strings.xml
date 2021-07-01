@@ -6,4 +6,8 @@
     <string name="password2">Wachtwoord nogmaals</string>
     <string name="name">Naam</string>
     <string name="aanmaken">Account aanmaken</string>
+    <string name="vakantieVan">Vakantie van</string>
+    <string name="vakantieTot">Vakantie tot</string>
+    <string name="vakantieToevegen">Vakantiedagen doorgeven</string>
+
 </resources>

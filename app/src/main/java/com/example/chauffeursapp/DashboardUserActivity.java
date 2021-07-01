@@ -12,6 +12,8 @@ import android.widget.TextView;
 public class DashboardUserActivity extends AppCompatActivity implements View.OnClickListener {
     TextView welcomeUser;
     Button shiftStartBtn;
+    Button holidayAddBtn;
+
     int user_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,21 +27,32 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
         user_id = id;
 
         welcomeUser.setText("Welkom terug, " + bundle.getString("name", "Gebruiker"));
-
-
         shiftStartBtn = (Button) findViewById(R.id.shiftStartBtn);
-
         shiftStartBtn.setOnClickListener(this);
-
-
-
+        holidayAddBtn = (Button) findViewById(R.id.holidayAddBtn);
+        holidayAddBtn.setOnClickListener(this);
     }
 
     public void onClick(View v) {
-        toTimerScreen();
+           if (v == shiftStartBtn){
+               toTimerScreen();
+        }
+           else if (v == holidayAddBtn) {
+               toVakantieDagenScreen();
+           }
+
     }
 
 
+
+    public void toVakantieDagenScreen() {
+        Bundle bundleForShift = new Bundle();
+        Log.d("user_id_to_vakantie", String.valueOf(user_id));
+        bundleForShift.putInt("user_id", user_id);
+        Intent toVakantieDagen = new Intent(this, WerknemerVakantiedagenActivity.class);
+        toVakantieDagen.putExtras(bundleForShift);
+        startActivity(toVakantieDagen);
+    }
     public void toTimerScreen() {
         Bundle bundleForShift = new Bundle();
         Log.d("user_id_to_timer", String.valueOf(user_id));

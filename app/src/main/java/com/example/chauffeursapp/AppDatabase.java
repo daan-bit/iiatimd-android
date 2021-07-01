@@ -10,10 +10,11 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
-@Database(entities = {User.class, Werktijden.class}, version = 9) //Kan ook meerdere entities opslaan
+@Database(entities = {User.class, Werktijden.class, Vakantiedagen.class}, version = 10) //Kan ook meerdere entities opslaan
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDAO userDAO();
     public abstract WerktijdenDAO werktijdenDAO();
+    public abstract VakantiedagenDAO vakantiedagenDAO();
 
     private static AppDatabase instance; //static == kan erbij ook als je geen instance van AppDatabase hebt
 
