@@ -16,6 +16,9 @@ public interface UserDAO{
     @Query("SELECT * FROM user")
     List<User> getAll();
 
+    @Query("SELECT COUNT (*) FROM user")
+    int getcount();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void InsertUser(User user);
 

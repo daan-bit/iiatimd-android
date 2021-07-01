@@ -1,11 +1,14 @@
 package com.example.chauffeursapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class GeschiedenisAdminActivity extends AppCompatActivity {
 
@@ -23,16 +26,15 @@ public class GeschiedenisAdminActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.hasFixedSize();
 
-        final User[] users = new User[6];
-        users[0] = new User("Marina", "Joejoe@gmail.com", "werknemer", 1);
-        users[1] = new User("Youri", "Joejoe@gmail.com", "werknemer", 2);
-        users[2] = new User("Pieter", "Joejoe@gmail.com", "werknemer", 3);
-        users[3] = new User("Zwanus", "Joejoe@gmail.com", "werknemer", 4);
-        users[4] = new User("Nemo", "Joejoe@gmail.com", "werknemer", 5);
-        users[5] = new User("Leo", "Joejoe@gmail.com", "werknemer", 6);
+        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
 
-        recyclerViewAdapter = new UserAdapter(users);
-        recyclerView.setAdapter(recyclerViewAdapter);
+        new Thread(new GetUsersTask(db, this)).start();
 
     }
+
+    public void setAdapter(User[] users){
+        recyclerViewAdapter = new UserAdapter(users);
+        recyclerView.setAdapter(recyclerViewAdapter);
+    }
+
 }
