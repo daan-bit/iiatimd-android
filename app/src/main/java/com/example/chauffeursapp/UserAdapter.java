@@ -1,6 +1,5 @@
 package com.example.chauffeursapp;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
         public UserViewHolder(View v){
             super(v);
-            textView = v.findViewById(R.id.textViewAdmin);
+            textView = v.findViewById(R.id.textViewUser);
         }
     }
 

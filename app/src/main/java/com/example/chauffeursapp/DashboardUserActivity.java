@@ -13,6 +13,7 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
     TextView welcomeUser;
     Button shiftStartBtn;
     Button holidayAddBtn;
+    Button driveHistoryBtn;
 
     int user_id;
     @Override
@@ -31,6 +32,9 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
         shiftStartBtn.setOnClickListener(this);
         holidayAddBtn = (Button) findViewById(R.id.holidayAddBtn);
         holidayAddBtn.setOnClickListener(this);
+        driveHistoryBtn = (Button) findViewById(R.id.driveHistoryBtn);
+        driveHistoryBtn.setOnClickListener(this);
+
     }
 
     public void onClick(View v) {
@@ -39,6 +43,9 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
         }
            else if (v == holidayAddBtn) {
                toVakantieDagenScreen();
+           }
+           else if (v == driveHistoryBtn){
+               toDriverHistory();
            }
 
     }
@@ -61,6 +68,11 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
         Intent toUserDashboard = new Intent(this, ActivityTimer.class);
         toUserDashboard.putExtras(bundleForShift);
         startActivity(toUserDashboard);
+    }
+
+    public void toDriverHistory(){
+        Intent toDriveHistory  = new Intent(this, GeschiedenisUserActivity.class);
+        startActivity(toDriveHistory);
     }
 
 }

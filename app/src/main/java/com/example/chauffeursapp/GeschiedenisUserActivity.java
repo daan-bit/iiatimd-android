@@ -6,16 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class GeschiedenisAdminActivity extends AppCompatActivity {
-
+public class GeschiedenisUserActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter recyclerViewAdapter;
+    private androidx.recyclerview.widget.RecyclerView.Adapter recyclerViewAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_geschiedenisadmin);
+        setContentView(R.layout.activity_geschiedenisuser);
 
         recyclerView = findViewById(R.id.recyclerViewUser);
         layoutManager = new LinearLayoutManager(this);
@@ -24,13 +23,11 @@ public class GeschiedenisAdminActivity extends AppCompatActivity {
 
         AppDatabase db = AppDatabase.getInstance(getApplicationContext());
 
-        new Thread(new GetUsersTask(db, this)).start();
-
+        new Thread(new GetUrenTask(db, this)).start();
     }
 
-    public void setAdapter(User[] users){
-        recyclerViewAdapter = new UserAdapter(users);
+    public void setAdapter(Werktijden[] werktijden){
+        recyclerViewAdapter = new WerktijdenAdapter(werktijden);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
-
 }
