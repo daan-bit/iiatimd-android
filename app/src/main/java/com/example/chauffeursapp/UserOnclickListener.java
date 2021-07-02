@@ -7,17 +7,17 @@ import android.view.View;
 
 public class UserOnclickListener implements View.OnClickListener {
 
-    public String name;
+    public int id;
     public GeschiedenisAdminActivity gaa;
 
-    public UserOnclickListener(String name, GeschiedenisAdminActivity gaa){
-        this.name = name;
+    public UserOnclickListener(int id, GeschiedenisAdminActivity gaa){
+        this.id = id;
         this.gaa = gaa;
     }
 
     @Override
     public void onClick(View v) {
-        gaa.toAdminUserWerktijden(name);
+        gaa.toAdminUserWerktijden(id);
 
     }
 }

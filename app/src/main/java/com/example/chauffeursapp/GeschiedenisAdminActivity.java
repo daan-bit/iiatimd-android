@@ -2,6 +2,7 @@ package com.example.chauffeursapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,9 +38,10 @@ public class GeschiedenisAdminActivity extends AppCompatActivity {
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
-    public void toAdminUserWerktijden(String name){
+    public void toAdminUserWerktijden(int id){
         Bundle bundleForAdminUserWerktijden = new Bundle();
-        bundleForAdminUserWerktijden.putString("name", name);
+        bundleForAdminUserWerktijden.putInt("id", id);
+        Log.d("idInGeschiedenis", String.valueOf(id));
         Intent toAdminUserWerktijden = new Intent(this, AdminUserWerktijdenAcitivity.class);
         toAdminUserWerktijden.putExtras(bundleForAdminUserWerktijden);
         startActivity(toAdminUserWerktijden);

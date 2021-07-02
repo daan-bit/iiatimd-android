@@ -42,7 +42,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         holder.textViewNaam.setText(users[position].getName());
 
-        holder.textViewNaam.setOnClickListener(new UserOnclickListener(users[position].getName(), gaa));
+        holder.textViewNaam.setOnClickListener(new UserOnclickListener(users[position].getUuid(), gaa));
     }
 
 

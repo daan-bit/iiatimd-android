@@ -15,6 +15,9 @@ public interface WerktijdenDAO {
     @Query("SELECT * FROM werktijden")
     List<Werktijden> getAll();
 
+    @Query("SELECT * FROM werktijden WHERE user_id= :id")
+    List<Werktijden> getByUser(Integer id);
+
     @Query("SELECT * FROM werktijden ORDER BY id DESC")
     List<Werktijden> getLast();
 
