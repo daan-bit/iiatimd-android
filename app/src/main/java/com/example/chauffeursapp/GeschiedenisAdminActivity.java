@@ -1,6 +1,8 @@
 package com.example.chauffeursapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +13,8 @@ public class GeschiedenisAdminActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter recyclerViewAdapter;
     private RecyclerView.LayoutManager layoutManager;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +33,19 @@ public class GeschiedenisAdminActivity extends AppCompatActivity {
     }
 
     public void setAdapter(User[] users){
-        recyclerViewAdapter = new UserAdapter(users);
+        recyclerViewAdapter = new UserAdapter(users, this);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
+
+    public void toAdminUserWerktijden(String name){
+        Bundle bundleForAdminUserWerktijden = new Bundle();
+        bundleForAdminUserWerktijden.putString("name", name);
+        Intent toAdminUserWerktijden = new Intent(this, AdminUserWerktijdenAcitivity.class);
+        toAdminUserWerktijden.putExtras(bundleForAdminUserWerktijden);
+        startActivity(toAdminUserWerktijden);
+    }
+
+
+
 
 }
