@@ -18,6 +18,9 @@ public interface VakantiedagenDAO {
     @Query("SELECT * FROM vakantiedagen")
     List<Vakantiedagen> getVakantiedagenUser();
 
+    @Query("SELECT * FROM vakantiedagen WHERE inLaravelDB = 0")
+    List<Vakantiedagen> sendVakantieDagenUser();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void InsertVakantiedagen(Vakantiedagen Vakantiedagen);
 

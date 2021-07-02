@@ -106,4 +106,38 @@ public class APICalls {
     }
 
 
+
+
+    public static void sendVakantieDagen(int user_id, String vakantie_van, String vakantie_tot, int inLaravelDB, Context context){
+        AppDatabase db = AppDatabase.getInstance(context);
+        RequestQueue queue = VolleySingleton.getInstance(context).getRequestQueue();
+        String url = "https://iiatimd-laravel-5ahcg.ondigitalocean.app/api/vakantiedagen/store";
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST,url,
+                new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response){
+                        Toast.makeText(context, "Data opgeslagen", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){
+                        Log.d("APPLOG", error.toString());
+                        Toast.makeText(context, "Error met opslaan data", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ){
+            @Override
+            public Map<String,String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("user_id", String.valueOf(user_id));
+                params.put("vakantie_van", vakantie_van);
+                params.put("vakantie_tot", vakantie_tot);
+                params.put("inLaravelDB", vakantie_tot);
+                return params;
+            }
+        };
+        VolleySingleton.getInstance(context).addToRequestQueue(postRequest);
+    }
 }

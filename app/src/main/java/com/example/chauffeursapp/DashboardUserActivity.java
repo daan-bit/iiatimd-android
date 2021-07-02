@@ -14,6 +14,8 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
     Button shiftStartBtn;
     Button holidayAddBtn;
     Button driveHistoryBtn;
+    Button sendDataBtn;
+
 
     int user_id;
     @Override
@@ -34,7 +36,8 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
         holidayAddBtn.setOnClickListener(this);
         driveHistoryBtn = (Button) findViewById(R.id.driveHistoryBtn);
         driveHistoryBtn.setOnClickListener(this);
-
+        sendDataBtn = (Button) findViewById(R.id.sendDataBtn);
+        sendDataBtn.setOnClickListener(this);
     }
 
     public void onClick(View v) {
@@ -46,6 +49,12 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
            }
            else if (v == driveHistoryBtn){
                toDriverHistory();
+           }
+
+           else if( v== sendDataBtn) {
+               AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
+               new Thread(new InsertVakantiedagenLaravelTask(db, this.getApplicationContext())).start();
+
            }
 
     }

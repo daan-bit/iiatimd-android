@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("APPLOG", error.toString());
-                        Toast.makeText(MainActivity.this, "Vekeerde e-mail of wachtwoord. Probeer opnieuw", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Verkeerde e-mail of wachtwoord. Probeer opnieuw", Toast.LENGTH_SHORT).show();
                     }
                 }
         ) {
