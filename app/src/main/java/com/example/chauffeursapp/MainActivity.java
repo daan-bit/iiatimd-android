@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private int getUserId() {
+    public int getUserId() {
         SharedPreferences prefs = this.getSharedPreferences("userSettings", Context.MODE_PRIVATE);
         int userId = prefs.getInt("user_id", 0);
         return userId;

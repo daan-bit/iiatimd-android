@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChauffeursApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WerknemerVakantiedagenActivity"></activity>
+        <activity android:name=".GeschiedenisUserActivity"></activity>
+        <activity android:name=".WerknemerVakantiedagenActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
