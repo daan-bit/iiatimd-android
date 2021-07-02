@@ -27,6 +27,8 @@
         <activity android:name=".GeschiedenisAdminActivity" />
         <activity android:name=".AdminVakantieWerknemerActivity" />
         <activity android:name=".GeschiedenisUserActivity" />
+        <activity android:name=".AdminUserWerktijdenAcitivity" />
+        <activity android:name=".TijdenActivity" />
     </application>
 
 </manifest>
