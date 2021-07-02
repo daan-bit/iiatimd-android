@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DashboardUserActivity extends AppCompatActivity implements View.OnClickListener {
     TextView welcomeUser;
@@ -52,9 +53,10 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
            }
 
            else if( v== sendDataBtn) {
+               Toast.makeText(this.getApplicationContext(), "Ongeblik geduld aub...", Toast.LENGTH_SHORT).show();
                AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
                new Thread(new InsertVakantiedagenLaravelTask(db, this.getApplicationContext())).start();
-
+               APICalls.getAllVakantiedagen(this.getApplicationContext());
            }
 
     }

@@ -27,6 +27,7 @@ public class APICalls {
     public static final String HOME = URL+"api/";
     public static final String LOGIN = HOME+"login";
     public static final String GEBRUIKERS = HOME+"gebruikers";
+    public static final String VAKANTIEDAGEN = HOME+"vakantiedagen";
     //nog meer urls toevoegen
 
     public static void getAllUsers(Context context) {
@@ -140,4 +141,54 @@ public class APICalls {
         };
         VolleySingleton.getInstance(context).addToRequestQueue(postRequest);
     }
+
+
+    /*Vakantiedagen ophalen*/
+
+    public static void getAllVakantiedagen(Context context) {
+        RequestQueue queue = VolleySingleton.getInstance(context.getApplicationContext()).getRequestQueue();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, VAKANTIEDAGEN, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("vakantiedagen");
+
+                            for(int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject vakantiedag = jsonArray.getJSONObject(i);
+                                int id = vakantiedag.getInt("id");
+                                int user_id = vakantiedag.getInt("user_id");
+                                String vakantie_van = vakantiedag.getString("vakantie_van");
+                                String vakantie_tot = vakantiedag.getString("vakantie_tot");
+                                int inLaravelDB = vakantiedag.getInt("inLaravelDB");
+
+                                Vakantiedagen[] vakantiedagen = new Vakantiedagen[jsonArray.length()];
+                                vakantiedagen[i] = new Vakantiedagen(id, user_id, vakantie_van, vakantie_tot, inLaravelDB);
+
+                                //Database aanmaken
+                                AppDatabase db = AppDatabase.getInstance(context); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
+
+                                new Thread(new InsertVakantiedagenTask(db, vakantiedagen[i])).start();
+                                try {
+                                    Thread.sleep(200);
+                                    Thread.currentThread().interrupt(); // very important
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+    /*einde vakantiedagen ophalen*/
 }
