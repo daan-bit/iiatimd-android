@@ -27,7 +27,7 @@ public class AdminGetWerktijdenUserTask extends AppCompatActivity implements Run
         Werktijden[] werktijden = new Werktijden[tijden.size()];
 
         for (int i=0; i<tijden.size(); i++) {
-            werktijden[i] = new Werktijden(tijden.get(i).getId(), tijden.get(i).getUser_id(), tijden.get(i).getBegin_shift(), tijden.get(i).getEinde_shift());
+            werktijden[i] = new Werktijden(tijden.get(i).getId(), tijden.get(i).getUser_id(), tijden.get(i).getBegin_shift(), tijden.get(i).getEinde_shift(), tijden.get(i).getInLaravelDB());
         }
         auwa.setAdapter(werktijden);
     }

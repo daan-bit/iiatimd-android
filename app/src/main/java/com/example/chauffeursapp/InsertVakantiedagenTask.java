@@ -15,7 +15,7 @@ public class InsertVakantiedagenTask implements Runnable{
     @Override
     public void run() {
         db.vakantiedagenDAO().InsertVakantiedagen(this.vakantiedagen);
-        int opgeslagenId = db.werktijdenDAO().getAll().get(0).getId();
+        //int opgeslagenId = db.werktijdenDAO().getAll().get(0).getId();
 
     }
 }

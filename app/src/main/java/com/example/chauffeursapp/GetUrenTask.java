@@ -19,7 +19,7 @@ public class GetUrenTask extends AppCompatActivity implements Runnable{
         List<Werktijden> werktijden = db.werktijdenDAO().getAll();
         Werktijden[] uren = new Werktijden[werktijden.size()];
         for (int i=0; i<werktijden.size(); i++) {
-            uren[i] = new Werktijden(werktijden.get(i).getId(), werktijden.get(i).getUser_id(), werktijden.get(i).getBegin_shift(),werktijden.get(i).getEinde_shift());
+            uren[i] = new Werktijden(werktijden.get(i).getId(), werktijden.get(i).getUser_id(), werktijden.get(i).getBegin_shift(),werktijden.get(i).getEinde_shift(), werktijden.get(i).getInLaravelDB());
         }
 
         gua.setAdapter(uren);

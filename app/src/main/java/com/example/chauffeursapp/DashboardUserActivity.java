@@ -53,8 +53,13 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
            }
 
            else if( v== sendDataBtn) {
-               Toast.makeText(this.getApplicationContext(), "Ongeblik geduld aub...", Toast.LENGTH_SHORT).show();
+
+               Toast.makeText(this.getApplicationContext(), "Ongeblik geduld aub, het kan enkele seconden duren...", Toast.LENGTH_SHORT).show();
                AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
+               
+               new Thread(new InsertWerktijdenLaravelTask(db, this.getApplicationContext())).start();
+               APICalls.getAllWerktijden(this.getApplicationContext());
+
                new Thread(new InsertVakantiedagenLaravelTask(db, this.getApplicationContext())).start();
                APICalls.getAllVakantiedagen(this.getApplicationContext());
            }
