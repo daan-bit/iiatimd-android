@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
         APICalls.getAllUsers(this.getApplicationContext());
 
+        APICalls.getAllWerktijden(this.getApplicationContext());
+        APICalls.getAllVakantiedagen(this.getApplicationContext());
         //Thread(new InsertUserTask(db, users[1])).start();
         //new Thread(new GetUserTask(db)).start();
     }

@@ -22,13 +22,17 @@ public class Werktijden {
     @ColumnInfo
     private String einde_shift;
 
+    @ColumnInfo
+    private int inLaravelDB;
 
 
-    public Werktijden (int id, int user_id, String begin_shift, String einde_shift){
+
+    public Werktijden (int id, int user_id, String begin_shift, String einde_shift, int inLaravelDB){
         this.id = id;
         this.user_id = user_id;
         this.begin_shift = begin_shift;
         this.einde_shift = einde_shift;
+        this.inLaravelDB = inLaravelDB;
 
     }
 
@@ -36,6 +40,8 @@ public class Werktijden {
     public int getUser_id(){return this.user_id;}
     public String getBegin_shift(){return this.begin_shift;}
     public String getEinde_shift(){return this.einde_shift;}
+    public int getInLaravelDB(){return this.inLaravelDB;}
+
 
 
 

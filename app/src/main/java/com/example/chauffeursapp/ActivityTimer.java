@@ -43,21 +43,10 @@ public class ActivityTimer extends AppCompatActivity {
         chronometer = findViewById(R.id.chronometer);
         chronometer.setFormat("Tijd: %s");
         chronometer.setBase(SystemClock.elapsedRealtime());
-        Werktijden[] werktijdens = new Werktijden[5];
-        werktijdens[0] = new Werktijden(2, 1, "2021-06-30 11:55:00", "2021-06-30 19:55:00");
+
 
         //Database aanmaken
         AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
-
-        new Thread(new InsertWerktijdenTask(db, werktijdens[0])).start();
-        try {
-
-            Thread.sleep(500);
-            Thread.currentThread().interrupt(); // very important
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
 
         //deze functie gebruiken we om te bepalen wanneer de gebruiker klaar is met zijn shift
 
@@ -81,11 +70,11 @@ public class ActivityTimer extends AppCompatActivity {
             Log.d("datum_nu", formatter.format(date));
             begin_shift = formatter.format((date));
             Werktijden[] werktijdens = new Werktijden[1];
-            werktijdens[0] = new Werktijden(idRandom, u_id, formatter.format((date)), "null");
+            werktijdens[0] = new Werktijden(idRandom, u_id, formatter.format((date)), "null", 0);
             AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
             new Thread(new InsertWerktijdenTask(db, werktijdens[0])).start();
             try {
-                Thread.sleep(500);
+                Thread.sleep(200);
                 Thread.currentThread().interrupt(); // very important
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -97,7 +86,7 @@ public class ActivityTimer extends AppCompatActivity {
             /* We halen de ID op van die insert */
             new Thread(new GetWerktijdenTask(db)).start();
             try {
-                Thread.sleep(500);
+                Thread.sleep(200);
                 Thread.currentThread().interrupt(); // very important
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -137,11 +126,11 @@ public class ActivityTimer extends AppCompatActivity {
                 String einde_shift = formatter.format((date));
 
                 Werktijden[] werktijdens = new Werktijden[1];
-                werktijdens[0] = new Werktijden(idRandom, u_id, begin_shift, einde_shift);
+                werktijdens[0] = new Werktijden(idRandom, u_id, begin_shift, einde_shift, 0);
                 AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
                 new Thread(new UpdateWerktijdenTask(db, werktijdens[0])).start();
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(200);
                     Thread.currentThread().interrupt(); // very important
                 } catch (InterruptedException e) {
                     e.printStackTrace();

@@ -21,6 +21,9 @@ public interface WerktijdenDAO {
     @Query("SELECT * FROM werktijden ORDER BY id DESC")
     List<Werktijden> getLast();
 
+    @Query("SELECT * FROM werktijden WHERE inLaravelDB = 0")
+    List<Werktijden> sendWerktijdenUser();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void InsertWerktijden(Werktijden werktijden);
 
