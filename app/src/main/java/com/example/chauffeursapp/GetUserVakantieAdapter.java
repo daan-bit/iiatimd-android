@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class GetUserVakantieAdapter extends RecyclerView.Adapter<GetUserVakantieAdapter.UserVakantieViewHolder>{
     private User[] users;
+    AdminVakantieWerknemerActivity avwa;
 
-    public GetUserVakantieAdapter(User[] users){
+    public GetUserVakantieAdapter(User[] users, AdminVakantieWerknemerActivity avwa){
         this.users = users;
+        this.avwa = avwa;
     }
 
     public static class UserVakantieViewHolder extends RecyclerView.ViewHolder{
@@ -36,6 +38,8 @@ public class GetUserVakantieAdapter extends RecyclerView.Adapter<GetUserVakantie
     @Override
     public void onBindViewHolder(@NonNull UserVakantieViewHolder holder, int position) {
         holder.textView.setText(users[position].getName());
+
+        holder.textView.setOnClickListener(new VakantieOnclickListener(users[position].getUuid(), avwa));
     }
 
     @Override

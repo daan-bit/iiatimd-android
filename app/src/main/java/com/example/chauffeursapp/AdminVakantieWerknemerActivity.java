@@ -1,6 +1,8 @@
 package com.example.chauffeursapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,7 +31,15 @@ public class AdminVakantieWerknemerActivity extends AppCompatActivity {
     }
 
     public void setAdapter(User[] users){
-        recyclerViewAdapter = new GetUserVakantieAdapter(users);
+        recyclerViewAdapter = new GetUserVakantieAdapter(users, this);
         recyclerView.setAdapter(recyclerViewAdapter);
+    }
+
+    public void toAdminUserVakantiedagen(int id){
+        Bundle bundleForAdminUserVakantiedagen = new Bundle();
+        bundleForAdminUserVakantiedagen.putInt("id", id);
+        Intent toAdminUserVakantiedagen = new Intent(this, AdminUserVakantiedagenActivity.class);
+        toAdminUserVakantiedagen.putExtras(bundleForAdminUserVakantiedagen);
+        startActivity(toAdminUserVakantiedagen);
     }
 }

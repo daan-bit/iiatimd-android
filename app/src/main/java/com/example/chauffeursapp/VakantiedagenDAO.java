@@ -15,6 +15,9 @@ public interface VakantiedagenDAO {
     @Query("SELECT * FROM vakantiedagen")
     List<Vakantiedagen> getAll();
 
+    @Query("SELECT * FROM vakantiedagen WHERE user_id= :id")
+    List<Vakantiedagen> getVakantieUser(Integer id);
+
     @Query("SELECT * FROM vakantiedagen")
     List<Vakantiedagen> getVakantiedagenUser();
 
