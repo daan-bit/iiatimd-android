@@ -45,7 +45,7 @@ public class ActivityTimer extends AppCompatActivity implements View.OnClickList
         u_id = bundle.getInt("user_id");
 
         chronometer = findViewById(R.id.chronometer);
-        chronometer.setFormat("Tijd: %s");
+        chronometer.setFormat("%s");
         chronometer.setBase(SystemClock.elapsedRealtime());
 
 

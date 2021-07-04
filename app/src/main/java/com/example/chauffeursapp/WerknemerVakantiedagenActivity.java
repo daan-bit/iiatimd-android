@@ -3,6 +3,7 @@ package com.example.chauffeursapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -110,13 +111,10 @@ public class WerknemerVakantiedagenActivity extends AppCompatActivity {
 
                 Toast.makeText(WerknemerVakantiedagenActivity.this, "U hebt successvol de vakantiedagen doorgegeven!", Toast.LENGTH_SHORT).show(); // chauffeur klaar met rijden
 
+
             }
         });
 
-
-
-
-
-
     }
+
 }

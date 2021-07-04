@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#33A1FD">
+    android:background="@color/bg">
 
     <TextView
         android:id="@+id/textViewUser"
@@ -24,7 +24,7 @@
         android:layout_width="355dp"
         android:layout_height="80dp"
         android:text="Shift beginnen"
-        app:backgroundTint="#31393C"
+        app:backgroundTint="@color/btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
         android:layout_width="101dp"
         android:layout_height="56dp"
         android:text="Refresh"
-        app:backgroundTint="#31393C"
+        app:backgroundTint="@color/btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.983"
@@ -49,7 +49,7 @@
         android:layout_width="355dp"
         android:layout_height="80dp"
         android:text="Vakantiedagen invoeren"
-        app:backgroundTint="#31393C"
+        app:backgroundTint="@color/btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
