@@ -15,21 +15,21 @@ public class AdminVakantieWerknemerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_vakantiedagen);
+        setContentView(R.layout.activity_admin_uservakantiedagen);
 
-        recyclerView = findViewById(R.id.AdminVakantieRecyclerView);
+        recyclerView = findViewById(R.id.AdminVakantieUserRecyclerView);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.hasFixedSize();
 
         AppDatabase db = AppDatabase.getInstance(getApplicationContext());
 
-        new Thread(new GetVakantiedagenAdminTask(db, this)).start();
+        new Thread(new GetVakantieUserAdminTask(db, this)).start();
 
     }
 
-    public void setAdapter(Vakantiedagen[] vakantiedagen){
-        recyclerViewAdapter = new VakantieAdapter(vakantiedagen);
+    public void setAdapter(User[] users){
+        recyclerViewAdapter = new GetUserVakantieAdapter(users);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 }
