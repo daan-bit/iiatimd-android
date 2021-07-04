@@ -1,5 +1,6 @@
 package com.example.chauffeursapp;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.os.SystemClock;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Toast;
 
@@ -21,9 +23,11 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ActivityTimer extends AppCompatActivity {
+public class ActivityTimer extends AppCompatActivity implements View.OnClickListener {
     Random rand = new Random();
     int idRandom = rand.nextInt(100000);
+
+    Button stopBtn;
 
     private Chronometer chronometer;
     private long pauseOffset;
@@ -60,6 +64,9 @@ public class ActivityTimer extends AppCompatActivity {
                 }
             }
         }); */
+
+        stopBtn = (Button) findViewById(R.id.stopBtn);
+        stopBtn.setOnClickListener(this);
     }
     public void startChronometer(View v) {
 
@@ -141,4 +148,11 @@ public class ActivityTimer extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public void onClick(View v) {
+        Intent toUserDashboard = new Intent(this, DashboardUserActivity.class);
+        startActivity(toUserDashboard);
+    }
+
 }

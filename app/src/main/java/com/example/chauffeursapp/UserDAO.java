@@ -16,6 +16,10 @@ public interface UserDAO{
     @Query("SELECT * FROM user")
     List<User> getAll();
 
+
+    @Query("SELECT * FROM user WHERE rol = 'werknemer'")
+    List<User> getAllWerknemer();
+
     @Query("SELECT COUNT (*) FROM user")
     int getcount();
 

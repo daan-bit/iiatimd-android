@@ -15,7 +15,7 @@ public class GetVakantieUserAdminTask extends AppCompatActivity implements Runna
 
     @Override
     public void run() {
-        List<User> gebruikers = db.userDAO().getAll();
+        List<User> gebruikers = db.userDAO().getAllWerknemer();
         User[] users = new User[gebruikers.size()];
         for (int i=0; i<gebruikers.size(); i++) {
             users[i] = new User(gebruikers.get(i).getName(), gebruikers.get(i).getEmail(), gebruikers.get(i).getRol(), gebruikers.get(i).getUuid());

@@ -21,7 +21,7 @@ public class GetUsersTask extends AppCompatActivity implements Runnable{
 
     @Override
     public void run() {
-        List<User> namen = db.userDAO().getAll();
+        List<User> namen = db.userDAO().getAllWerknemer();
         User[] users = new User[namen.size()];
 
         for (int i=0; i<namen.size(); i++) {

@@ -26,7 +26,6 @@
         <activity android:name=".DashboardUserActivity" />
         <activity android:name=".GeschiedenisAdminActivity" />
         <activity android:name=".AdminVakantieWerknemerActivity" />
-        <activity android:name=".GeschiedenisUserActivity" />
         <activity android:name=".AdminUserWerktijdenAcitivity" />
         <activity android:name=".TijdenActivity" />
         <activity android:name=".AdminUserVakantiedagenActivity" />
