@@ -13,8 +13,12 @@ import java.util.List;
 public interface UserDAO{
 
     //Returnt een lijst van users en die functie heet getAll, hoeft niet uit te leggen hoe precies werkt, als deze methode maar gebruikt wordt
-    @Query("SELECT * FROM user WHERE rol = 'werknemer'")
+    @Query("SELECT * FROM user")
     List<User> getAll();
+
+
+    @Query("SELECT * FROM user WHERE rol = 'werknemer'")
+    List<User> getAllWerknemer();
 
     @Query("SELECT COUNT (*) FROM user")
     int getcount();

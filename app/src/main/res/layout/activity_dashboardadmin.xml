@@ -4,14 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#33A1FD">
+    android:background="@color/bg">
+
+    <Button
+        android:id="@+id/shiftStartBtn"
+        android:layout_width="355dp"
+        android:layout_height="80dp"
+        android:text="Werknemer toevoegen"
+        app:backgroundTint="@color/btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.387" />
 
     <TextView
         android:id="@+id/textViewUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dashboard"
-        android:textColor="#31393C"
+        android:textColor="@color/txt"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,38 +32,27 @@
         app:layout_constraintVertical_bias="0.085" />
 
     <Button
-        android:id="@+id/shiftStartBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Werknemer toevoegen"
-        app:backgroundTint="#31393C"
+        android:id="@+id/geschiedenisGebruikerBtn"
+        android:layout_width="355dp"
+        android:layout_height="80dp"
+        android:text="Geschiedenis "
+        app:backgroundTint="@color/btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.355" />
-
-    <Button
-        android:id="@+id/geschiedenisGebruikerBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Geschiedenis werknemers"
-        app:backgroundTint="#31393C"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.539" />
 
     <Button
         android:id="@+id/werknemerVakantieBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="355dp"
+        android:layout_height="80dp"
         android:text="@string/vakantieAdminGebruikers"
-        app:backgroundTint="#31393C"
+        app:backgroundTint="@color/btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.628" />
+        app:layout_constraintVertical_bias="0.703" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

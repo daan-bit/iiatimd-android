@@ -10,4 +10,10 @@
     <color name="grey">#D7D7D7</color>
     <color name="red">#8B0000</color>
     <color name="green">#006400</color>
+
+    <color name="bg">#457B9D</color>
+    <color name="txt">#F1FAEE</color>
+    <color name="btn">#1D3557</color>
+    <color name="crd">#1D3557</color>
+
 </resources>
