@@ -11,7 +11,7 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
 
-@Database(entities = {User.class, Werktijden.class, Vakantiedagen.class}, version = 22) //Kan ook meerdere entities opslaan
+@Database(entities = {User.class, Werktijden.class, Vakantiedagen.class}, version = 1) //Kan ook meerdere entities opslaan
 
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDAO userDAO();

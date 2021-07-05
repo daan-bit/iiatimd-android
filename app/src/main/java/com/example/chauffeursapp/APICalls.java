@@ -126,7 +126,7 @@ public class APICalls {
                     @Override
                     public void onErrorResponse(VolleyError error){
                         Log.d("APPLOG", error.toString());
-                        Toast.makeText(context, "Error met opslaan data", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "Error met opslaan data", Toast.LENGTH_SHORT).show();
                     }
                 }
         ){
@@ -215,7 +215,7 @@ public class APICalls {
                     @Override
                     public void onErrorResponse(VolleyError error){
                         Log.d("APPLOG", error.toString());
-                        Toast.makeText(context, "Error met opslaan werktijden", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "Error met opslaan werktijden", Toast.LENGTH_SHORT).show();
                     }
                 }
         ){

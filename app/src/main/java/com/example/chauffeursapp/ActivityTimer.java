@@ -141,6 +141,31 @@ public class ActivityTimer extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        chronometer.stop();
+        pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+        if (running) {
+            if(shiftBegonnen) {
+                //  chronometer.stop();
+                // pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+                running = false;
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                Date date = new Date();
+                String einde_shift = formatter.format((date));
+
+                Werktijden[] werktijdens = new Werktijden[1];
+                werktijdens[0] = new Werktijden(idRandom, u_id, begin_shift, einde_shift, 0);
+                AppDatabase db = AppDatabase.getInstance(getApplicationContext()); //Singelton gemaakt om er zo voor te zorgen dat er maar 1 db is ipv meer
+                new Thread(new UpdateWerktijdenTask(db, werktijdens[0])).start();
+                try {
+                    Thread.sleep(200);
+                    Thread.currentThread().interrupt(); // very important
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                shiftBegonnen = false;
+            }
+
+        }
         Intent toUserDashboard = new Intent(this, DashboardUserActivity.class);
         startActivity(toUserDashboard);
     }

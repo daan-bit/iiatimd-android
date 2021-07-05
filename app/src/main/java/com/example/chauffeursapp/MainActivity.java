@@ -102,13 +102,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             if(getRol().equals("werknemer")) {
                                 getUserName();
                                 //hier zetten we de dashboard van werknemer
-                                Toast.makeText(MainActivity.this, getUserName(), Toast.LENGTH_SHORT).show();
                                 toDashboardUser();
                             } else {
                                 //hier gebruiken we de dashboard van de user
                                 //anders tonen we ander dashboard scherm
                                 toDashboardAdmin();
-                                Toast.makeText(MainActivity.this, "Werkgever", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
