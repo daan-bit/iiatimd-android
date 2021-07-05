@@ -1,8 +1,13 @@
 package com.example.chauffeursapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +41,12 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
         holidayAddBtn.setOnClickListener(this);
         sendDataBtn = (Button) findViewById(R.id.sendDataBtn);
         sendDataBtn.setOnClickListener(this);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("My notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
     }
 
     public void onClick(View v) {
@@ -56,6 +67,15 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
 
                new Thread(new InsertVakantiedagenLaravelTask(db, this.getApplicationContext())).start();
                APICalls.getAllVakantiedagen(this.getApplicationContext());
+
+               NotificationCompat.Builder builder = new NotificationCompat.Builder(DashboardUserActivity.this, "My notification");
+               builder.setContentTitle("Gegevens gerefresht");
+               builder.setContentText("Alle gegevens zijn verstuurd en opgehaald vanuit de API");
+               builder.setSmallIcon(R.drawable.ic_launcher_background);
+               builder.setAutoCancel(true);
+
+               NotificationManagerCompat managerCompat = NotificationManagerCompat.from(DashboardUserActivity.this);
+               managerCompat.notify(1, builder.build());
            }
 
     }
