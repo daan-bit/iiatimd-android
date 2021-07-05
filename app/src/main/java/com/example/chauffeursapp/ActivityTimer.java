@@ -41,6 +41,7 @@ public class ActivityTimer extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
         shiftBegonnen = false;
+        running = false;
         Bundle bundle = getIntent().getExtras();
         u_id = bundle.getInt("user_id");
 
@@ -54,16 +55,6 @@ public class ActivityTimer extends AppCompatActivity implements View.OnClickList
 
         //deze functie gebruiken we om te bepalen wanneer de gebruiker klaar is met zijn shift
 
-       /* chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-            @Override
-            public void onChronometerTick(Chronometer chronometer) {
-                if ((SystemClock.elapsedRealtime() - chronometer.getBase()) >= 30000) { // voor nu 30 seconden
-                    chronometer.setBase(SystemClock.elapsedRealtime());
-                    Toast.makeText(ActivityTimer.this, "U bent klaar met rijden voor vandaag!", Toast.LENGTH_SHORT).show(); // chauffeur klaar met rijden
-                    chronometer.stop();
-                }
-            }
-        }); */
 
         stopBtn = (Button) findViewById(R.id.stopBtn);
         stopBtn.setOnClickListener(this);
@@ -117,7 +108,6 @@ public class ActivityTimer extends AppCompatActivity implements View.OnClickList
     public void resetChronometer(View v) {
         chronometer.setBase(SystemClock.elapsedRealtime());
         pauseOffset = 0;
-        chronometer.stop();
     }
 
     @Override
@@ -125,8 +115,8 @@ public class ActivityTimer extends AppCompatActivity implements View.OnClickList
         super.onStop();
         if (running) {
             if(shiftBegonnen) {
-                chronometer.stop();
-                pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+              //  chronometer.stop();
+               // pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
                 running = false;
                 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
                 Date date = new Date();
