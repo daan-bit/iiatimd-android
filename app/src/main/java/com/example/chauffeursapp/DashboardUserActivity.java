@@ -71,7 +71,7 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
                NotificationCompat.Builder builder = new NotificationCompat.Builder(DashboardUserActivity.this, "My notification");
                builder.setContentTitle("Gegevens gerefresht");
                builder.setContentText("Alle gegevens zijn verstuurd en opgehaald vanuit de API");
-               builder.setSmallIcon(R.drawable.ic_launcher_background);
+               builder.setSmallIcon(R.drawable.data_gerefreshet_foreground);
                builder.setAutoCancel(true);
 
                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(DashboardUserActivity.this);
@@ -79,8 +79,6 @@ public class DashboardUserActivity extends AppCompatActivity implements View.OnC
            }
 
     }
-
-
 
     public void toVakantieDagenScreen() {
         Bundle bundleForShift = new Bundle();

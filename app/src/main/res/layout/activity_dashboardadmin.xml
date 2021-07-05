@@ -10,13 +10,17 @@
         android:id="@+id/shiftStartBtn"
         android:layout_width="355dp"
         android:layout_height="80dp"
+        android:drawableEnd="@drawable/add_werknemer_foreground"
+        android:drawableRight="@drawable/add_werknemer_foreground"
+        android:paddingLeft="20dp"
+        android:paddingRight="2dp"
         android:text="Werknemer toevoegen"
         app:backgroundTint="@color/btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387" />
+        app:layout_constraintVertical_bias="0.32999998" />
 
     <TextView
         android:id="@+id/textViewUser"
@@ -35,24 +39,33 @@
         android:id="@+id/geschiedenisGebruikerBtn"
         android:layout_width="355dp"
         android:layout_height="80dp"
+        android:drawableRight="@drawable/histoty_foreground"
+        android:paddingLeft="20dp"
+        android:paddingRight="2dp"
         android:text="Geschiedenis "
         app:backgroundTint="@color/btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.539" />
+        app:layout_constraintVertical_bias="0.47000003" />
 
     <Button
         android:id="@+id/werknemerVakantieBtn"
         android:layout_width="355dp"
         android:layout_height="80dp"
+        android:drawableEnd="@drawable/vacation_foreground"
+        android:drawableRight="@drawable/vacation_foreground"
+        android:paddingLeft="20dp"
+        android:paddingRight="2dp"
         android:text="@string/vakantieAdminGebruikers"
         app:backgroundTint="@color/btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.703" />
+        app:layout_constraintVertical_bias="0.61" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

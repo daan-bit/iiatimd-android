@@ -23,38 +23,45 @@
         android:id="@+id/shiftStartBtn"
         android:layout_width="355dp"
         android:layout_height="80dp"
+        android:drawableRight="@drawable/shift_foreground"
+        android:paddingLeft="20dp"
+        android:paddingRight="2dp"
         android:text="Shift beginnen"
         app:backgroundTint="@color/btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.419" />
+        app:layout_constraintVertical_bias="0.39" />
 
     <Button
         android:id="@+id/sendDataBtn"
-        android:layout_width="101dp"
-        android:layout_height="56dp"
-        android:text="Refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         app:backgroundTint="@color/btn"
+        app:icon="@drawable/data_gerefreshet_button_foreground"
+        app:iconPadding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.983"
+        app:layout_constraintHorizontal_bias="0.896"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.998" />
 
     <Button
         android:id="@+id/holidayAddBtn"
         android:layout_width="355dp"
         android:layout_height="80dp"
+        android:drawableRight="@drawable/vacation_foreground"
+        android:paddingLeft="20dp"
+        android:paddingRight="2dp"
         android:text="Vakantiedagen invoeren"
         app:backgroundTint="@color/btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565" />
+        app:layout_constraintVertical_bias="0.53" />
 
     <TextView
         android:id="@+id/welkomUser"
